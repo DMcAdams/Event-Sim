@@ -1,12 +1,15 @@
-#include<stdid>
-#include<stdlib>
+#include<stdio.h>
+#include<stdlib.h>
 #include"queue.h"
 
+void output(char *s);
+//define filenames
+#define LOGFILE "./log.txt"
+
 int main(){
-  //create job queue
-  struct queue *job_queue = createQueue();
-  //tracks number of jobs
-  int job_count = 0;
+  //testing log file
+  output("The quick brown fox");
+  output("jumped over the lazy dog");
 }
 
 
@@ -38,11 +41,13 @@ void sim_disk(){
   if NOT RUNNING:
     get wait timer
     set status to running
+  fi
 
   if RUNNING:
     Remove next job in disk queue
     place job in least used disk queue
     set status to NOT RUNNING
+  fi
   */
 
 }
@@ -50,4 +55,27 @@ void sim_disk(){
 //this function returns a random number between a min and max
 int randNumber(int min, int max){
   return min+(rand() % (max+1));
+}
+
+void output(char *s){
+
+  //open log file
+  FILE *file = fopen(LOGFILE, "a");
+
+  //if file could not be opened
+  if (file == NULL){
+    //error message
+    puts("Error: Could not open log file");
+    exit(-1);
+  }
+  //else file is open
+  else{
+    //print message to console
+    printf ("%s\n", s);
+    //write to log file
+    fprintf(file, "%s\n", s);
+  }
+
+  //close file
+  fclose(file);
 }
