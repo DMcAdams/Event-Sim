@@ -4,10 +4,13 @@
 #include"config.h"
 #include"component.h"
 
+//function prototypes
 void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk2, int currentTime);
+void sim_disk(struct component *disk, struct queue *job_queue, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum);
 int randNumber(int min, int max);
 void output(char *s);
 void output_config(config *conf);
+
 //define filenames
 #define LOGFILE "./log.txt"
 #define CONFIG_FILE "./config.txt"
@@ -59,6 +62,18 @@ int main(){
     if (cpu->WAIT_TIME < currentTime && cpu->QUEUE->front != NULL) {
         //simulates the CPU, gets it's current wait time
         sim_cpu(myConfig, cpu, disk1, disk2, currentTime);
+    }
+
+    //if disk 1 is free and has a job in queue
+    if (disk1->WAIT_TIME < currentTime && disk1->QUEUE->front != NULL) {
+        //simulates disk 1, gets it's current wait time
+        sim_disk(disk1, job_queue, currentTime, myConfig->DISK1_MIN, myConfig->DISK1_MAX, 1);
+    }
+
+    //If disk 2 is free and has a job in queue
+    if (disk2->WAIT_TIME < currentTime && disk2->QUEUE->front != NULL) {
+        //simulates disk 2, gets it's current wait time
+        sim_disk(disk2, job_queue, currentTime, myConfig->DISK2_MIN, myConfig->DISK2_MAX, 2);
     }
 
     currentTime++;
@@ -127,21 +142,40 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
 }
 
 //this function simulates a DISK
-void sim_disk(){
-  ///pseudocode
+void sim_disk(struct component *disk, struct queue *job_queue, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum){
+  struct node *temp;
+  //for logging output
+  char string[BUFF_SIZE];
 
-/*
-if NOT RUNNING:
-  get wait timer
-  set status to running
-fi
-if RUNNING:
-  Remove next job in disk queue
-  place job in least used disk queue
-  set status to NOT RUNNING
-fi
-*/
+  //get DISK status
+  switch (disk->STATUS) {
 
+    //disk is IDLE
+    case IDLE:
+      //get new wait time
+      disk->WAIT_TIME = currentTime + randNumber(DISK_MIN, DISK_MAX);
+      //output arrival message
+      sprintf(string, "%d\tJob %d: Arrived at DISK %d", currentTime, disk->QUEUE->front->key, diskNum);
+      output(string);
+      //set disk to RUNNING
+      disk->STATUS = RUNNING;
+
+    break;
+
+    //disk is RUNNING
+    case RUNNING:
+      //remove job from DISK queue
+      temp = deQueue(disk->QUEUE);
+      //put job back into job queue
+      enQueue(job_queue, temp->key);
+      //print message
+      sprintf(string, "%d\tJob %d: I/O finished on DISK %d, sent back to job queue", currentTime, disk->QUEUE->front->key, diskNum);
+      output(string);
+      //set disk status to idle
+      disk->STATUS = IDLE;
+
+      break;
+  }
 }
 
 //this function returns a random number between a min and max

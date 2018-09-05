@@ -130,3 +130,795 @@ DISK2_MAX 68
 1189	Job 59: Set to DISK 2 from CPU
 1190	Job 60: Arrived at CPU
 ************SIMULATION END************
+INIT_TIME 0
+FIN_TIME 1200
+ARRIVE_MIN 9
+ARRIVE_MAX 15
+CPU_MIN 3
+CPU_MAX 30
+QUIT_PROB 20
+DISK1_MIN 32
+DISK1_MAX 40
+DISK2_MIN 53
+DISK2_MAX 68
+************SIMULATION START************
+1	Job 1: Arrived at CPU
+15	Job 1: Set to DISK 2 from CPU
+16	Job 2: Arrived at CPU
+27	Job 2: Set to DISK 1 from CPU
+28	Job 3: Arrived at CPU
+50	Job 3: Set to DISK 2 from CPU
+51	Job 4: Arrived at CPU
+67	Job 4: Set to DISK 1 from CPU
+68	Job 5: Arrived at CPU
+89	Job 5: Set to DISK 2 from CPU
+90	Job 2: Arrived at CPU
+117	Job 2: Set to DISK 1 from CPU
+118	Job 1: Arrived at CPU
+128	Job 1: Set to DISK 1 from CPU
+129	Job 4: Arrived at CPU
+138	Job 4: Set to DISK 2 from CPU
+139	Job 6: Arrived at CPU
+172	Job 6: Set to DISK 1 from CPU
+173	Job 7: Arrived at CPU
+188	Job 7: Set to DISK 1 from CPU
+189	Job 3: Arrived at CPU
+206	Job 3: Set to DISK 2 from CPU
+207	Job 2: Arrived at CPU
+239	Job 2: Set to DISK 2 from CPU
+240	Job 1: Arrived at CPU
+263	Job 1: Set to DISK 1 from CPU
+264	Job 5: Arrived at CPU
+298	Job 5: Set to DISK 1 from CPU
+299	Job 6: Arrived at CPU
+315	Job 6: Set to DISK 2 from CPU
+316	Job 8: Arrived at CPU
+325	Job 8: Set to DISK 1 from CPU
+326	Job 9: Arrived at CPU
+357	Job 9: Set to DISK 2 from CPU
+358	Job 7: Arrived at CPU
+366	Job 7: Set to DISK 1 from CPU
+367	Job 4: Arrived at CPU
+372	Job 4: Set to DISK 1 from CPU
+373	Job 10: Arrived at CPU
+401	Job 10: Set to DISK 1 from CPU
+402	Job 11: Arrived at CPU
+422	Job 11: Set to DISK 2 from CPU
+423	Job 1: Arrived at CPU
+430	Job 1: Set to DISK 1 from CPU
+431	Job 12: Arrived at CPU
+455	Job 12: Set to DISK 1 from CPU
+456	Job 5: Arrived at CPU
+482	Job 5: Set to DISK 2 from CPU
+483	Job 3: Arrived at CPU
+494	Job 3: Set to DISK 2 from CPU
+495	Job 13: Arrived at CPU
+501	Job 13: Set to DISK 1 from CPU
+502	Job 14: Arrived at CPU
+526	Job 14: Set to DISK 2 from CPU
+527	Job 8: Arrived at CPU
+552	Job 8: Set to DISK 2 from CPU
+553	Job 15: Arrived at CPU
+566	Job 15: Set to DISK 1 from CPU
+567	Job 2: Arrived at CPU
+601	Job 2: Set to DISK 1 from CPU
+602	Job 7: Arrived at CPU
+627	Job 7: Set to DISK 1 from CPU
+628	Job 16: Arrived at CPU
+636	Job 16: Set to DISK 2 from CPU
+637	Job 4: Arrived at CPU
+659	Job 4: Set to DISK 2 from CPU
+660	Job 17: Arrived at CPU
+684	Job 17: Set to DISK 1 from CPU
+685	Job 6: Arrived at CPU
+707	Job 6: Set to DISK 1 from CPU
+708	Job 10: Arrived at CPU
+724	Job 10: Set to DISK 2 from CPU
+725	Job 18: Arrived at CPU
+744	Job 18: Set to DISK 1 from CPU
+745	Job 19: Arrived at CPU
+775	Job 19: Set to DISK 1 from CPU
+776	Job 1: Arrived at CPU
+805	Job 1: Set to DISK 2 from CPU
+806	Job 9: Arrived at CPU
+840	Job 9: Set to DISK 1 from CPU
+841	Job 12: Arrived at CPU
+847	Job 12: Set to DISK 2 from CPU
+848	Job 20: Arrived at CPU
+871	Job 20: Set to DISK 1 from CPU
+872	Job 21: Arrived at CPU
+885	Job 21: Set to DISK 2 from CPU
+886	Job 13: Arrived at CPU
+918	Job 13: Set to DISK 1 from CPU
+919	Job 11: Arrived at CPU
+923	Job 11: Set to DISK 1 from CPU
+924	Job 15: Arrived at CPU
+944	Job 15: Set to DISK 2 from CPU
+945	Job 22: Arrived at CPU
+951	Job 22: Set to DISK 1 from CPU
+952	Job 5: Arrived at CPU
+974	Job 5: Set to DISK 1 from CPU
+975	Job 23: Arrived at CPU
+986	Job 23: Set to DISK 2 from CPU
+987	Job 2: Arrived at CPU
+1010	Job 2: Set to DISK 1 from CPU
+1011	Job 24: Arrived at CPU
+1034	Job 24: Set to DISK 2 from CPU
+1035	Job 7: Arrived at CPU
+1056	Job 7: Set to DISK 1 from CPU
+1057	Job 3: Arrived at CPU
+1065	Job 3: Set to DISK 2 from CPU
+1066	Job 17: Arrived at CPU
+1098	Job 17: Set to DISK 1 from CPU
+1099	Job 25: Arrived at CPU
+1130	Job 25: Set to DISK 1 from CPU
+1131	Job 26: Arrived at CPU
+1137	Job 26: Set to DISK 1 from CPU
+1138	Job 6: Arrived at CPU
+1168	Job 6: Set to DISK 2 from CPU
+1169	Job 27: Arrived at CPU
+1186	Job 27: Set to DISK 2 from CPU
+1187	Job 14: Arrived at CPU
+************SIMULATION END************
+INIT_TIME 0
+FIN_TIME 1200
+ARRIVE_MIN 9
+ARRIVE_MAX 15
+CPU_MIN 3
+CPU_MAX 30
+QUIT_PROB 20
+DISK1_MIN 32
+DISK1_MAX 40
+DISK2_MIN 53
+DISK2_MAX 68
+************SIMULATION START************
+1	Job 1: Arrived at CPU
+15	Job 1: Set to DISK 2 from CPU
+15	Job 1: Arrived at DISK 2
+
+16	Job 2: Arrived at CPU
+27	Job 2: Set to DISK 1 from CPU
+27	Job 2: Arrived at DISK 1
+
+28	Job 3: Arrived at CPU
+50	Job 3: Set to DISK 2 from CPU
+51	Job 4: Arrived at CPU
+67	Job 4: Set to DISK 1 from CPU
+67	Job 4: I/O finished on DISK 1, sent back to job queue
+
+68	Job 5: Arrived at CPU
+68	Job 4: Arrived at DISK 1
+
+75	Job 3: I/O finished on DISK 2, sent back to job queue
+
+76	Job 3: Arrived at DISK 2
+
+89	Job 5: Set to DISK 2 from CPU
+90	Job 2: Arrived at CPU
+117	Job 2: Set to DISK 1 from CPU
+118	Job 1: Arrived at CPU
+118	Job 2: I/O finished on DISK 1, sent back to job queue
+
+119	Job 2: Arrived at DISK 1
+
+128	Job 1: Set to DISK 1 from CPU
+129	Job 4: Arrived at CPU
+138	Job 4: Set to DISK 2 from CPU
+139	Job 6: Arrived at CPU
+147	Job 5: I/O finished on DISK 2, sent back to job queue
+
+148	Job 5: Arrived at DISK 2
+
+160	Job 1: I/O finished on DISK 1, sent back to job queue
+
+161	Job 1: Arrived at DISK 1
+
+172	Job 6: Set to DISK 1 from CPU
+173	Job 7: Arrived at CPU
+188	Job 7: Set to DISK 1 from CPU
+189	Job 3: Arrived at CPU
+206	Job 3: Set to DISK 2 from CPU
+207	Job 2: Arrived at CPU
+207	Job 6: I/O finished on DISK 1, sent back to job queue
+
+208	Job 6: Arrived at DISK 1
+
+233	Job 4: I/O finished on DISK 2, sent back to job queue
+
+234	Job 4: Arrived at DISK 2
+
+239	Job 2: Set to DISK 2 from CPU
+240	Job 1: Arrived at CPU
+261	Job 7: I/O finished on DISK 1, sent back to job queue
+
+262	Job 7: Arrived at DISK 1
+
+263	Job 1: Set to DISK 1 from CPU
+264	Job 5: Arrived at CPU
+298	Job 5: Set to DISK 1 from CPU
+299	Job 6: Arrived at CPU
+315	Job 6: Set to DISK 2 from CPU
+316	Job 8: Arrived at CPU
+324	Job 1: I/O finished on DISK 1, sent back to job queue
+
+325	Job 8: Set to DISK 1 from CPU
+325	Job 1: Arrived at DISK 1
+
+326	Job 9: Arrived at CPU
+350	Job 3: I/O finished on DISK 2, sent back to job queue
+
+351	Job 3: Arrived at DISK 2
+
+357	Job 9: Set to DISK 2 from CPU
+358	Job 7: Arrived at CPU
+366	Job 7: Set to DISK 1 from CPU
+367	Job 4: Arrived at CPU
+372	Job 4: Set to DISK 1 from CPU
+373	Job 10: Arrived at CPU
+376	Job 5: I/O finished on DISK 1, sent back to job queue
+
+377	Job 5: Arrived at DISK 1
+
+401	Job 10: Set to DISK 1 from CPU
+402	Job 11: Arrived at CPU
+422	Job 11: Set to DISK 2 from CPU
+423	Job 1: Arrived at CPU
+426	Job 8: I/O finished on DISK 1, sent back to job queue
+
+427	Job 8: Arrived at DISK 1
+
+430	Job 1: Set to DISK 1 from CPU
+431	Job 12: Arrived at CPU
+455	Job 12: Set to DISK 1 from CPU
+456	Job 5: Arrived at CPU
+456	Job 2: I/O finished on DISK 2, sent back to job queue
+
+457	Job 2: Arrived at DISK 2
+
+482	Job 5: Set to DISK 2 from CPU
+483	Job 3: Arrived at CPU
+494	Job 3: Set to DISK 2 from CPU
+495	Job 13: Arrived at CPU
+498	Job 7: I/O finished on DISK 1, sent back to job queue
+
+499	Job 7: Arrived at DISK 1
+
+501	Job 13: Set to DISK 1 from CPU
+502	Job 14: Arrived at CPU
+526	Job 14: Set to DISK 2 from CPU
+527	Job 8: Arrived at CPU
+541	Job 6: I/O finished on DISK 2, sent back to job queue
+
+542	Job 6: Arrived at DISK 2
+
+552	Job 8: Set to DISK 2 from CPU
+553	Job 15: Arrived at CPU
+554	Job 4: I/O finished on DISK 1, sent back to job queue
+
+555	Job 4: Arrived at DISK 1
+
+566	Job 15: Set to DISK 1 from CPU
+567	Job 2: Arrived at CPU
+601	Job 2: Set to DISK 1 from CPU
+602	Job 7: Arrived at CPU
+618	Job 10: I/O finished on DISK 1, sent back to job queue
+
+619	Job 10: Arrived at DISK 1
+
+627	Job 7: Set to DISK 1 from CPU
+628	Job 16: Arrived at CPU
+636	Job 16: Set to DISK 2 from CPU
+637	Job 4: Arrived at CPU
+658	Job 9: I/O finished on DISK 2, sent back to job queue
+
+659	Job 4: Set to DISK 2 from CPU
+659	Job 9: Arrived at DISK 2
+
+660	Job 17: Arrived at CPU
+678	Job 1: I/O finished on DISK 1, sent back to job queue
+
+679	Job 1: Arrived at DISK 1
+
+684	Job 17: Set to DISK 1 from CPU
+685	Job 6: Arrived at CPU
+707	Job 6: Set to DISK 1 from CPU
+708	Job 10: Arrived at CPU
+724	Job 10: Set to DISK 2 from CPU
+725	Job 18: Arrived at CPU
+728	Job 12: I/O finished on DISK 1, sent back to job queue
+
+729	Job 12: Arrived at DISK 1
+
+744	Job 18: Set to DISK 1 from CPU
+745	Job 19: Arrived at CPU
+746	Job 11: I/O finished on DISK 2, sent back to job queue
+
+747	Job 11: Arrived at DISK 2
+
+775	Job 19: Set to DISK 1 from CPU
+776	Job 1: Arrived at CPU
+787	Job 13: I/O finished on DISK 1, sent back to job queue
+
+788	Job 13: Arrived at DISK 1
+
+805	Job 1: Set to DISK 2 from CPU
+806	Job 9: Arrived at CPU
+840	Job 9: Set to DISK 1 from CPU
+841	Job 12: Arrived at CPU
+847	Job 12: Set to DISK 2 from CPU
+848	Job 20: Arrived at CPU
+854	Job 15: I/O finished on DISK 1, sent back to job queue
+
+854	Job 5: I/O finished on DISK 2, sent back to job queue
+
+855	Job 15: Arrived at DISK 1
+
+855	Job 5: Arrived at DISK 2
+
+871	Job 20: Set to DISK 1 from CPU
+872	Job 21: Arrived at CPU
+885	Job 21: Set to DISK 2 from CPU
+886	Job 13: Arrived at CPU
+910	Job 2: I/O finished on DISK 1, sent back to job queue
+
+911	Job 2: Arrived at DISK 1
+
+918	Job 13: Set to DISK 1 from CPU
+919	Job 11: Arrived at CPU
+923	Job 11: Set to DISK 1 from CPU
+924	Job 15: Arrived at CPU
+927	Job 3: I/O finished on DISK 2, sent back to job queue
+
+928	Job 3: Arrived at DISK 2
+
+944	Job 15: Set to DISK 2 from CPU
+945	Job 22: Arrived at CPU
+951	Job 22: Set to DISK 1 from CPU
+952	Job 5: Arrived at CPU
+957	Job 7: I/O finished on DISK 1, sent back to job queue
+
+958	Job 7: Arrived at DISK 1
+
+974	Job 5: Set to DISK 1 from CPU
+975	Job 23: Arrived at CPU
+986	Job 23: Set to DISK 2 from CPU
+987	Job 2: Arrived at CPU
+1002	Job 17: I/O finished on DISK 1, sent back to job queue
+
+1003	Job 17: Arrived at DISK 1
+
+1010	Job 2: Set to DISK 1 from CPU
+1011	Job 24: Arrived at CPU
+1021	Job 14: I/O finished on DISK 2, sent back to job queue
+
+1022	Job 14: Arrived at DISK 2
+
+1034	Job 24: Set to DISK 2 from CPU
+1035	Job 7: Arrived at CPU
+1042	Job 6: I/O finished on DISK 1, sent back to job queue
+
+1043	Job 6: Arrived at DISK 1
+
+1056	Job 7: Set to DISK 1 from CPU
+1057	Job 3: Arrived at CPU
+1065	Job 3: Set to DISK 2 from CPU
+1066	Job 17: Arrived at CPU
+1098	Job 17: Set to DISK 1 from CPU
+1099	Job 25: Arrived at CPU
+1112	Job 18: I/O finished on DISK 1, sent back to job queue
+
+1113	Job 18: Arrived at DISK 1
+
+1130	Job 25: Set to DISK 1 from CPU
+1131	Job 26: Arrived at CPU
+1137	Job 26: Set to DISK 1 from CPU
+1138	Job 6: Arrived at CPU
+1140	Job 8: I/O finished on DISK 2, sent back to job queue
+
+1141	Job 8: Arrived at DISK 2
+
+1168	Job 6: Set to DISK 2 from CPU
+1169	Job 27: Arrived at CPU
+1176	Job 19: I/O finished on DISK 1, sent back to job queue
+
+1177	Job 19: Arrived at DISK 1
+
+1186	Job 27: Set to DISK 2 from CPU
+1187	Job 14: Arrived at CPU
+************SIMULATION END************
+INIT_TIME 0
+FIN_TIME 1200
+ARRIVE_MIN 9
+ARRIVE_MAX 15
+CPU_MIN 3
+CPU_MAX 30
+QUIT_PROB 20
+DISK1_MIN 32
+DISK1_MAX 40
+DISK2_MIN 53
+DISK2_MAX 68
+************SIMULATION START************
+1	Job 1: Arrived at CPU
+15	Job 1: Set to DISK 2 from CPU
+15	Job 1: Arrived at DISK 2
+16	Job 2: Arrived at CPU
+27	Job 2: Set to DISK 1 from CPU
+27	Job 2: Arrived at DISK 1
+28	Job 3: Arrived at CPU
+50	Job 3: Set to DISK 2 from CPU
+51	Job 4: Arrived at CPU
+67	Job 4: Set to DISK 1 from CPU
+67	Job 4: I/O finished on DISK 1, sent back to job queue
+68	Job 5: Arrived at CPU
+68	Job 4: Arrived at DISK 1
+75	Job 3: I/O finished on DISK 2, sent back to job queue
+76	Job 3: Arrived at DISK 2
+89	Job 5: Set to DISK 2 from CPU
+90	Job 2: Arrived at CPU
+117	Job 2: Set to DISK 1 from CPU
+118	Job 1: Arrived at CPU
+118	Job 2: I/O finished on DISK 1, sent back to job queue
+119	Job 2: Arrived at DISK 1
+128	Job 1: Set to DISK 1 from CPU
+129	Job 4: Arrived at CPU
+138	Job 4: Set to DISK 2 from CPU
+139	Job 6: Arrived at CPU
+147	Job 5: I/O finished on DISK 2, sent back to job queue
+148	Job 5: Arrived at DISK 2
+160	Job 1: I/O finished on DISK 1, sent back to job queue
+161	Job 1: Arrived at DISK 1
+172	Job 6: Set to DISK 1 from CPU
+173	Job 7: Arrived at CPU
+188	Job 7: Set to DISK 1 from CPU
+189	Job 3: Arrived at CPU
+206	Job 3: Set to DISK 2 from CPU
+207	Job 2: Arrived at CPU
+207	Job 6: I/O finished on DISK 1, sent back to job queue
+208	Job 6: Arrived at DISK 1
+233	Job 4: I/O finished on DISK 2, sent back to job queue
+234	Job 4: Arrived at DISK 2
+239	Job 2: Set to DISK 2 from CPU
+240	Job 1: Arrived at CPU
+261	Job 7: I/O finished on DISK 1, sent back to job queue
+262	Job 7: Arrived at DISK 1
+263	Job 1: Set to DISK 1 from CPU
+264	Job 5: Arrived at CPU
+298	Job 5: Set to DISK 1 from CPU
+299	Job 6: Arrived at CPU
+315	Job 6: Set to DISK 2 from CPU
+316	Job 8: Arrived at CPU
+324	Job 1: I/O finished on DISK 1, sent back to job queue
+325	Job 8: Set to DISK 1 from CPU
+325	Job 1: Arrived at DISK 1
+326	Job 9: Arrived at CPU
+350	Job 3: I/O finished on DISK 2, sent back to job queue
+351	Job 3: Arrived at DISK 2
+357	Job 9: Set to DISK 2 from CPU
+358	Job 7: Arrived at CPU
+366	Job 7: Set to DISK 1 from CPU
+367	Job 4: Arrived at CPU
+372	Job 4: Set to DISK 1 from CPU
+373	Job 10: Arrived at CPU
+376	Job 5: I/O finished on DISK 1, sent back to job queue
+377	Job 5: Arrived at DISK 1
+401	Job 10: Set to DISK 1 from CPU
+402	Job 11: Arrived at CPU
+422	Job 11: Set to DISK 2 from CPU
+423	Job 1: Arrived at CPU
+426	Job 8: I/O finished on DISK 1, sent back to job queue
+427	Job 8: Arrived at DISK 1
+430	Job 1: Set to DISK 1 from CPU
+431	Job 12: Arrived at CPU
+455	Job 12: Set to DISK 1 from CPU
+456	Job 5: Arrived at CPU
+456	Job 2: I/O finished on DISK 2, sent back to job queue
+457	Job 2: Arrived at DISK 2
+482	Job 5: Set to DISK 2 from CPU
+483	Job 3: Arrived at CPU
+494	Job 3: Set to DISK 2 from CPU
+495	Job 13: Arrived at CPU
+498	Job 7: I/O finished on DISK 1, sent back to job queue
+499	Job 7: Arrived at DISK 1
+501	Job 13: Set to DISK 1 from CPU
+502	Job 14: Arrived at CPU
+526	Job 14: Set to DISK 2 from CPU
+527	Job 8: Arrived at CPU
+541	Job 6: I/O finished on DISK 2, sent back to job queue
+542	Job 6: Arrived at DISK 2
+552	Job 8: Set to DISK 2 from CPU
+553	Job 15: Arrived at CPU
+554	Job 4: I/O finished on DISK 1, sent back to job queue
+555	Job 4: Arrived at DISK 1
+566	Job 15: Set to DISK 1 from CPU
+567	Job 2: Arrived at CPU
+601	Job 2: Set to DISK 1 from CPU
+602	Job 7: Arrived at CPU
+618	Job 10: I/O finished on DISK 1, sent back to job queue
+619	Job 10: Arrived at DISK 1
+627	Job 7: Set to DISK 1 from CPU
+628	Job 16: Arrived at CPU
+636	Job 16: Set to DISK 2 from CPU
+637	Job 4: Arrived at CPU
+658	Job 9: I/O finished on DISK 2, sent back to job queue
+659	Job 4: Set to DISK 2 from CPU
+659	Job 9: Arrived at DISK 2
+660	Job 17: Arrived at CPU
+678	Job 1: I/O finished on DISK 1, sent back to job queue
+679	Job 1: Arrived at DISK 1
+684	Job 17: Set to DISK 1 from CPU
+685	Job 6: Arrived at CPU
+707	Job 6: Set to DISK 1 from CPU
+708	Job 10: Arrived at CPU
+724	Job 10: Set to DISK 2 from CPU
+725	Job 18: Arrived at CPU
+728	Job 12: I/O finished on DISK 1, sent back to job queue
+729	Job 12: Arrived at DISK 1
+744	Job 18: Set to DISK 1 from CPU
+745	Job 19: Arrived at CPU
+746	Job 11: I/O finished on DISK 2, sent back to job queue
+747	Job 11: Arrived at DISK 2
+775	Job 19: Set to DISK 1 from CPU
+776	Job 1: Arrived at CPU
+787	Job 13: I/O finished on DISK 1, sent back to job queue
+788	Job 13: Arrived at DISK 1
+805	Job 1: Set to DISK 2 from CPU
+806	Job 9: Arrived at CPU
+840	Job 9: Set to DISK 1 from CPU
+841	Job 12: Arrived at CPU
+847	Job 12: Set to DISK 2 from CPU
+848	Job 20: Arrived at CPU
+854	Job 15: I/O finished on DISK 1, sent back to job queue
+854	Job 5: I/O finished on DISK 2, sent back to job queue
+855	Job 15: Arrived at DISK 1
+855	Job 5: Arrived at DISK 2
+871	Job 20: Set to DISK 1 from CPU
+872	Job 21: Arrived at CPU
+885	Job 21: Set to DISK 2 from CPU
+886	Job 13: Arrived at CPU
+910	Job 2: I/O finished on DISK 1, sent back to job queue
+911	Job 2: Arrived at DISK 1
+918	Job 13: Set to DISK 1 from CPU
+919	Job 11: Arrived at CPU
+923	Job 11: Set to DISK 1 from CPU
+924	Job 15: Arrived at CPU
+927	Job 3: I/O finished on DISK 2, sent back to job queue
+928	Job 3: Arrived at DISK 2
+944	Job 15: Set to DISK 2 from CPU
+945	Job 22: Arrived at CPU
+951	Job 22: Set to DISK 1 from CPU
+952	Job 5: Arrived at CPU
+957	Job 7: I/O finished on DISK 1, sent back to job queue
+958	Job 7: Arrived at DISK 1
+974	Job 5: Set to DISK 1 from CPU
+975	Job 23: Arrived at CPU
+986	Job 23: Set to DISK 2 from CPU
+987	Job 2: Arrived at CPU
+1002	Job 17: I/O finished on DISK 1, sent back to job queue
+1003	Job 17: Arrived at DISK 1
+1010	Job 2: Set to DISK 1 from CPU
+1011	Job 24: Arrived at CPU
+1021	Job 14: I/O finished on DISK 2, sent back to job queue
+1022	Job 14: Arrived at DISK 2
+1034	Job 24: Set to DISK 2 from CPU
+1035	Job 7: Arrived at CPU
+1042	Job 6: I/O finished on DISK 1, sent back to job queue
+1043	Job 6: Arrived at DISK 1
+1056	Job 7: Set to DISK 1 from CPU
+1057	Job 3: Arrived at CPU
+1065	Job 3: Set to DISK 2 from CPU
+1066	Job 17: Arrived at CPU
+1098	Job 17: Set to DISK 1 from CPU
+1099	Job 25: Arrived at CPU
+1112	Job 18: I/O finished on DISK 1, sent back to job queue
+1113	Job 18: Arrived at DISK 1
+1130	Job 25: Set to DISK 1 from CPU
+1131	Job 26: Arrived at CPU
+1137	Job 26: Set to DISK 1 from CPU
+1138	Job 6: Arrived at CPU
+1140	Job 8: I/O finished on DISK 2, sent back to job queue
+1141	Job 8: Arrived at DISK 2
+1168	Job 6: Set to DISK 2 from CPU
+1169	Job 27: Arrived at CPU
+1176	Job 19: I/O finished on DISK 1, sent back to job queue
+1177	Job 19: Arrived at DISK 1
+1186	Job 27: Set to DISK 2 from CPU
+1187	Job 14: Arrived at CPU
+************SIMULATION END************
+INIT_TIME 0
+FIN_TIME 1200
+ARRIVE_MIN 9
+ARRIVE_MAX 15
+CPU_MIN 3
+CPU_MAX 30
+QUIT_PROB 20
+DISK1_MIN 32
+DISK1_MAX 40
+DISK2_MIN 53
+DISK2_MAX 68
+************SIMULATION START************
+1	Job 1: Arrived at CPU
+15	Job 1: Set to DISK 2 from CPU
+15	Job 1: Arrived at DISK 2
+16	Job 2: Arrived at CPU
+27	Job 2: Set to DISK 1 from CPU
+27	Job 2: Arrived at DISK 1
+28	Job 3: Arrived at CPU
+50	Job 3: Set to DISK 2 from CPU
+51	Job 4: Arrived at CPU
+67	Job 4: Set to DISK 1 from CPU
+67	Job 4: I/O finished on DISK 1, sent back to job queue
+68	Job 5: Arrived at CPU
+68	Job 4: Arrived at DISK 1
+75	Job 3: I/O finished on DISK 2, sent back to job queue
+76	Job 3: Arrived at DISK 2
+89	Job 5: Set to DISK 2 from CPU
+90	Job 2: Arrived at CPU
+117	Job 2: Set to DISK 1 from CPU
+118	Job 1: Arrived at CPU
+118	Job 2: I/O finished on DISK 1, sent back to job queue
+119	Job 2: Arrived at DISK 1
+128	Job 1: Set to DISK 1 from CPU
+129	Job 4: Arrived at CPU
+138	Job 4: Set to DISK 2 from CPU
+139	Job 6: Arrived at CPU
+147	Job 5: I/O finished on DISK 2, sent back to job queue
+148	Job 5: Arrived at DISK 2
+160	Job 1: I/O finished on DISK 1, sent back to job queue
+161	Job 1: Arrived at DISK 1
+172	Job 6: Set to DISK 1 from CPU
+173	Job 7: Arrived at CPU
+188	Job 7: Set to DISK 1 from CPU
+189	Job 3: Arrived at CPU
+206	Job 3: Set to DISK 2 from CPU
+207	Job 2: Arrived at CPU
+207	Job 6: I/O finished on DISK 1, sent back to job queue
+208	Job 6: Arrived at DISK 1
+233	Job 4: I/O finished on DISK 2, sent back to job queue
+234	Job 4: Arrived at DISK 2
+239	Job 2: Set to DISK 2 from CPU
+240	Job 1: Arrived at CPU
+261	Job 7: I/O finished on DISK 1, sent back to job queue
+262	Job 7: Arrived at DISK 1
+263	Job 1: Set to DISK 1 from CPU
+264	Job 5: Arrived at CPU
+298	Job 5: Set to DISK 1 from CPU
+299	Job 6: Arrived at CPU
+315	Job 6: Set to DISK 2 from CPU
+316	Job 8: Arrived at CPU
+324	Job 1: I/O finished on DISK 1, sent back to job queue
+325	Job 8: Set to DISK 1 from CPU
+325	Job 1: Arrived at DISK 1
+326	Job 9: Arrived at CPU
+350	Job 3: I/O finished on DISK 2, sent back to job queue
+351	Job 3: Arrived at DISK 2
+357	Job 9: Set to DISK 2 from CPU
+358	Job 7: Arrived at CPU
+366	Job 7: Set to DISK 1 from CPU
+367	Job 4: Arrived at CPU
+372	Job 4: Set to DISK 1 from CPU
+373	Job 10: Arrived at CPU
+376	Job 5: I/O finished on DISK 1, sent back to job queue
+377	Job 5: Arrived at DISK 1
+401	Job 10: Set to DISK 1 from CPU
+402	Job 11: Arrived at CPU
+422	Job 11: Set to DISK 2 from CPU
+423	Job 1: Arrived at CPU
+426	Job 8: I/O finished on DISK 1, sent back to job queue
+427	Job 8: Arrived at DISK 1
+430	Job 1: Set to DISK 1 from CPU
+431	Job 12: Arrived at CPU
+455	Job 12: Set to DISK 1 from CPU
+456	Job 5: Arrived at CPU
+456	Job 2: I/O finished on DISK 2, sent back to job queue
+457	Job 2: Arrived at DISK 2
+482	Job 5: Set to DISK 2 from CPU
+483	Job 3: Arrived at CPU
+494	Job 3: Set to DISK 2 from CPU
+495	Job 13: Arrived at CPU
+498	Job 7: I/O finished on DISK 1, sent back to job queue
+499	Job 7: Arrived at DISK 1
+501	Job 13: Set to DISK 1 from CPU
+502	Job 14: Arrived at CPU
+526	Job 14: Set to DISK 2 from CPU
+527	Job 8: Arrived at CPU
+541	Job 6: I/O finished on DISK 2, sent back to job queue
+542	Job 6: Arrived at DISK 2
+552	Job 8: Set to DISK 2 from CPU
+553	Job 15: Arrived at CPU
+554	Job 4: I/O finished on DISK 1, sent back to job queue
+555	Job 4: Arrived at DISK 1
+566	Job 15: Set to DISK 1 from CPU
+567	Job 2: Arrived at CPU
+601	Job 2: Set to DISK 1 from CPU
+602	Job 7: Arrived at CPU
+618	Job 10: I/O finished on DISK 1, sent back to job queue
+619	Job 10: Arrived at DISK 1
+627	Job 7: Set to DISK 1 from CPU
+628	Job 16: Arrived at CPU
+636	Job 16: Set to DISK 2 from CPU
+637	Job 4: Arrived at CPU
+658	Job 9: I/O finished on DISK 2, sent back to job queue
+659	Job 4: Set to DISK 2 from CPU
+659	Job 9: Arrived at DISK 2
+660	Job 17: Arrived at CPU
+678	Job 1: I/O finished on DISK 1, sent back to job queue
+679	Job 1: Arrived at DISK 1
+684	Job 17: Set to DISK 1 from CPU
+685	Job 6: Arrived at CPU
+707	Job 6: Set to DISK 1 from CPU
+708	Job 10: Arrived at CPU
+724	Job 10: Set to DISK 2 from CPU
+725	Job 18: Arrived at CPU
+728	Job 12: I/O finished on DISK 1, sent back to job queue
+729	Job 12: Arrived at DISK 1
+744	Job 18: Set to DISK 1 from CPU
+745	Job 19: Arrived at CPU
+746	Job 11: I/O finished on DISK 2, sent back to job queue
+747	Job 11: Arrived at DISK 2
+775	Job 19: Set to DISK 1 from CPU
+776	Job 1: Arrived at CPU
+787	Job 13: I/O finished on DISK 1, sent back to job queue
+788	Job 13: Arrived at DISK 1
+805	Job 1: Set to DISK 2 from CPU
+806	Job 9: Arrived at CPU
+840	Job 9: Set to DISK 1 from CPU
+841	Job 12: Arrived at CPU
+847	Job 12: Set to DISK 2 from CPU
+848	Job 20: Arrived at CPU
+854	Job 15: I/O finished on DISK 1, sent back to job queue
+854	Job 5: I/O finished on DISK 2, sent back to job queue
+855	Job 15: Arrived at DISK 1
+855	Job 5: Arrived at DISK 2
+871	Job 20: Set to DISK 1 from CPU
+872	Job 21: Arrived at CPU
+885	Job 21: Set to DISK 2 from CPU
+886	Job 13: Arrived at CPU
+910	Job 2: I/O finished on DISK 1, sent back to job queue
+911	Job 2: Arrived at DISK 1
+918	Job 13: Set to DISK 1 from CPU
+919	Job 11: Arrived at CPU
+923	Job 11: Set to DISK 1 from CPU
+924	Job 15: Arrived at CPU
+927	Job 3: I/O finished on DISK 2, sent back to job queue
+928	Job 3: Arrived at DISK 2
+944	Job 15: Set to DISK 2 from CPU
+945	Job 22: Arrived at CPU
+951	Job 22: Set to DISK 1 from CPU
+952	Job 5: Arrived at CPU
+957	Job 7: I/O finished on DISK 1, sent back to job queue
+958	Job 7: Arrived at DISK 1
+974	Job 5: Set to DISK 1 from CPU
+975	Job 23: Arrived at CPU
+986	Job 23: Set to DISK 2 from CPU
+987	Job 2: Arrived at CPU
+1002	Job 17: I/O finished on DISK 1, sent back to job queue
+1003	Job 17: Arrived at DISK 1
+1010	Job 2: Set to DISK 1 from CPU
+1011	Job 24: Arrived at CPU
+1021	Job 14: I/O finished on DISK 2, sent back to job queue
+1022	Job 14: Arrived at DISK 2
+1034	Job 24: Set to DISK 2 from CPU
+1035	Job 7: Arrived at CPU
+1042	Job 6: I/O finished on DISK 1, sent back to job queue
+1043	Job 6: Arrived at DISK 1
+1056	Job 7: Set to DISK 1 from CPU
+1057	Job 3: Arrived at CPU
+1065	Job 3: Set to DISK 2 from CPU
+1066	Job 17: Arrived at CPU
+1098	Job 17: Set to DISK 1 from CPU
+1099	Job 25: Arrived at CPU
+1112	Job 18: I/O finished on DISK 1, sent back to job queue
+1113	Job 18: Arrived at DISK 1
+1130	Job 25: Set to DISK 1 from CPU
+1131	Job 26: Arrived at CPU
+1137	Job 26: Set to DISK 1 from CPU
+1138	Job 6: Arrived at CPU
+1140	Job 8: I/O finished on DISK 2, sent back to job queue
+1141	Job 8: Arrived at DISK 2
+1168	Job 6: Set to DISK 2 from CPU
+1169	Job 27: Arrived at CPU
+1176	Job 19: I/O finished on DISK 1, sent back to job queue
+1177	Job 19: Arrived at DISK 1
+1186	Job 27: Set to DISK 2 from CPU
+1187	Job 14: Arrived at CPU
+************SIMULATION END************
