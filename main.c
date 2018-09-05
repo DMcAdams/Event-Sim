@@ -76,7 +76,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
       //get new wait time
       cpu->WAIT_TIME = currentTime + randNumber(myConfig->CPU_MIN, myConfig->CPU_MAX);
       //print out arrival message
-      printf("%d\tJob %d: Arrived at CPU\n", currentTime, cpu->QUEUE->front->key);
+      output("%d\tJob %d: Arrived at CPU\n", currentTime, cpu->QUEUE->front->key);
       //update status
       cpu->STATUS = RUNNING;
       break;
@@ -107,7 +107,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
         }
       }
       //print message
-      printf("%d\tJob %d: Set to DISK %d from CPU\n", currentTime, temp->key, diskNum);
+      output("%d\tJob %d: Set to DISK %d from CPU\n", currentTime, temp->key, diskNum);
       //set CPU to IDLE
       cpu->STATUS = IDLE;
       break;
