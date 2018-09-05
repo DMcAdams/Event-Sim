@@ -4,6 +4,8 @@
  |         Date:  September 4th, 2018
  |  Description:  This header has a struct for config information and
  |                 a function create_config that gets values for it from a config.txt file
+ |      WARNING:  This code assumes that the config text file has a predetermined order for
+ |                  the inputs, and will not work properly if it is out of order.
  *==============================================================================================*/
 
 #ifndef CONFIG_H
@@ -15,7 +17,7 @@
 
 #define BUFF_SIZE 1024
 //struct holds all of the config variables
-struct config
+typedef struct config
 {
     //Values come from config file
     int INIT_TIME;
@@ -29,12 +31,12 @@ struct config
     int DISK1_MAX;
     int DISK2_MIN;
     int DISK2_MAX;
-};
+} config;
 
 //initialize the config struct
-struct config *create_config(){
+config *create_config(){
     //allocate memory
-    struct config *temp = malloc(sizeof(struct config));
+    config *temp = malloc(sizeof(config));
     //initialize all variables to 0
     temp->INIT_TIME = 0;
     temp->FIN_TIME = 0;
@@ -50,10 +52,10 @@ struct config *create_config(){
     return temp;
 }
 
-struct config *get_config(const char *filename) {
+config *get_config(const char *filename) {
 
     //get a new config struct
-    struct config *CONFIG_INFO = create_config();
+    config *CONFIG_INFO = create_config();
     //open config text file
     FILE *file = fopen(filename, "r");
 
@@ -72,7 +74,7 @@ struct config *get_config(const char *filename) {
         int count = 0;
 
         //loop through each line
-        while (fgets(buff, sizeof(line), file) != NULL) {
+        while (fgets(buff, sizeof(buff), file) != NULL) {
             sscanf(buff, "%s %s", line1, line2);
 
             switch (count) {
