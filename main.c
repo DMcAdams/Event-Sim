@@ -4,6 +4,7 @@
 #include"config.h"
 #include"component.h"
 
+void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk2, int currentTime);
 void output(char *s);
 int randNumber(int min, int max);
 //define filenames
@@ -14,116 +15,103 @@ int randNumber(int min, int max);
 #define RUNNING 1
 
 int main(){
-  //*********testing queue**********
-  puts("***********QUEUE TEST****************");
-  //create queue
-  queue *q = createQueue();
-  //add nodes, and print at each step
-  enQueue(q, 2);
-  printQueue(q);
-  enQueue(q, 299593);
-  printQueue(q);
-  enQueue(q, -4566543);
-  printQueue(q);
-  enQueue(q, 2211111122);
-  printQueue(q);
-  //remove nodes from queue, print queue at each step
-  printf("Removed %d from queue\n", deQueue(q)->key);
-  printQueue(q);
-  printf("Removed %d from queue\n", deQueue(q)->key);
-  printQueue(q);
-  printf("Removed %d from queue\n", deQueue(q)->key);
-  printQueue(q);
-  printf("Removed %d from queue\n", deQueue(q)->key);
-  printQueue(q);
-  //intentionally tying to remove a node from an empty queue
-  deQueue(q);
-  deQueue(q);
-  printQueue(q);
-  free(q);
 
-  //*******testing component.h***********
-  puts("**************Testing component.h**************");
-  //getting 2 component structs
+  //set up simulated components
   component *cpu = get_component();
-  component *disk = get_component();
+  component *disk1 = get_component();
+  component *disk2 = get_component();
 
-  //add nodes to QUEUE
-  push(cpu, 5);
-  push(cpu, 6);
-  push(cpu, 9);
-  push(cpu, 2);
-  push(cpu, 1);
-  push(disk, 3);
+  //get config info from config.txt
+  config *myConfig = get_config(CONFIG_FILE);
+  //set current time to starting time specified in config
+  int currentTime = myConfig->INIT_TIME;
 
-  //display queues
-  printf("CPU:");
-  printQueue(cpu->QUEUE);
-  printf("DISK:");
-  printQueue(disk->QUEUE);
+  //create job queue
+  queue *job_queue = createQueue();
+  //tracks number of jobs
+  int job_count = 0;
 
-  //move nodes from cpu to disk
-  while(!Empty(cpu->QUEUE)){
-    push(disk, pop(cpu));
-  }
+  output("************SIMULATION START************");
+  //main loop, each tick on the simulated clock checks the CPU and both disks.
+  while (currentTime < myConfig->FIN_TIME){
+    //make sure that there is always an available job
+    if (job_queue->count == 0){
+      //increment job counter
+      job_count++;
+      //add new job to queue
+      enQueue(job_queue, job_count);
 
-  //display queues
-  printf("***\nCPU:");
-  printQueue(cpu->QUEUE);
-  printf("DISK:");
-  printQueue(disk->QUEUE);
-
-  //move nodes from disk to cpu
-  while(!Empty(disk->QUEUE)){
-    push(cpu, pop(disk));
-  }
-
-  //display queues
-  printf("***\nCPU:");
-  printQueue(cpu->QUEUE);
-  printf("DISK:");
-  printQueue(disk->QUEUE);
-
-  //test wait timer
-
-  //loop 20 times
-  for (int i = 0; i < 20; i++){
-    //give random wait times
-    cpu->WAIT_TIME = randNumber(1, 100);
-    disk->WAIT_TIME = randNumber(1, 100);
-    //print them out
-    printf("CPU WAIT: %d\nDISK WAIT: %d\n", cpu->WAIT_TIME, disk->WAIT_TIME);
-    //test for loop timer
-    for (int j = 0; j<100; j++){
-      if (j == cpu->WAIT_TIME)
-        printf("%d: CPU\n", j);
-      if (j == disk->WAIT_TIME)
-        printf("%d: DISK\n", j);
     }
-  }
+    //make sure that CPU has at least 1 job in queue
+    if (cpu->QUEUE->count == 0){
+      //take a job from the job_queue
+      enQueue(cpu->QUEUE, deQueue(job_queue)->key);
+    }
 
+    //if cpu is free and has a job in queue
+        if (cpu->WAIT_TIME < currentTime && cpu->QUEUE->front != NULL) {
+            //simulates the CPU, gets it's current wait time
+            sim_cpu(myConfig, cpu, disk1, disk2, currentTime);
+        }
+
+    currentTime++;
+  }
+  //sim end
+  output("************SIMULATION END************");
 }
 
 
 //this function simulates the CPU
-void sim_cpu(){
-  //pseudocode
+void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk2, int currentTime){
 
-  /*
-  if NOT RUNNING:
-    get wait timer
-    set status to running
-  fi
+  //used for sending jobs to a disk
+  int diskNum;
+  node *temp;
 
-  if RUNNING:
-    Remove next job in CPU queue
-    if job is done(rand chance):
-      remove job from queue
-    else
-      place job in least used disk queue
-    set status to NOT RUNNING
-  fi
-  */
+  //get current status for CPU
+  switch (cpu->STATUS) {
+
+    //if cpu is IDLE
+    case IDLE:
+      //get new wait time
+      cpu->WAIT_TIME = currentTime + randNumber(myConfig->CPU_MIN, myConfig->CPU_MAX);
+      //print out arrival message
+      printf("%d\tJob %d: Arrived at CPU\n", currentTime, cpu->QUEUE->front->key);
+      //update status
+      cpu->STATUS = RUNNING;
+      break;
+
+    //CPU is running
+    case RUNNING:
+      //remove job from CPU queue
+      temp = deQueue(cpu->QUEUE);
+      //send job to DISK with least amount of jobs
+      if (disk1->QUEUE->count < disk2->QUEUE->count){
+        enQueue(disk1->QUEUE, temp->key);
+        diskNum = 1;
+      }
+      else if (disk1->QUEUE->count > disk2->QUEUE->count){
+        enQueue(disk2->QUEUE, temp->key);
+        diskNum = 2;
+      }
+      //if same amount of jobs, pick one at random
+      else{
+        int num = randNumber(0,100);
+        if (num>50){
+          enQueue(disk1->QUEUE, temp->key);
+          diskNum = 1;
+        }
+        else{
+          enQueue(disk2->QUEUE, temp->key);
+          diskNum = 2;
+        }
+      }
+      //print message
+      printf("%d\tJob %d: Set to DISK %d from CPU\n", currentTime, temp->key, diskNum);
+      //set CPU to IDLE
+      cpu->STATUS = IDLE;
+      break;
+  }
 }
 //this function simulates a DISK
 void sim_disk(){
