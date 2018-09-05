@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#include"queue.h"
-#include"config.h"
-#include"component.h"
+#include"./headers/queue.h"
+#include"./headers/config.h"
+#include"./headers/component.h"
 
 //function prototypes
 void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk2, int currentTime);
@@ -116,7 +116,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
       temp = pop(cpu);
 
       //check if job is finished (random % chance based on QUIT_PROB)
-      if (myConfig->QUIT_PROB >= randNumber(1, 100)){
+      if (myConfig->QUIT_PROB <= randNumber(1, 100)){
         //log message
         sprintf(string, "%d\tJob %d: Finished.", currentTime, temp);
         output(string);
@@ -147,7 +147,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
         }
       }
       //print message
-      sprintf(string,"%d\tJob %d: Set to DISK %d from CPU", currentTime, temp, diskNum);
+      sprintf(string,"%d\tJob %d: Sent to DISK %d from CPU", currentTime, temp, diskNum);
       output(string);
       //set CPU to IDLE
       cpu->STATUS = IDLE;
@@ -228,6 +228,7 @@ void output_config(config *conf){
     puts("Error: Could not open log file");
     exit(-1);
   }
+
   //print config to console
   printf("INIT_TIME %d\nFIN_TIME %d\n", conf->INIT_TIME, conf-> FIN_TIME);
   printf("ARRIVE_MIN %d\nARRIVE_MAX %d\n", conf->ARRIVE_MIN, conf-> ARRIVE_MAX);
