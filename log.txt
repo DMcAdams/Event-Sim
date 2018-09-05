@@ -1,5 +1,132 @@
-************SIMULATION END************
-************SIMULATION END************
-************SIMULATION END************
+INIT_TIME 0
+FIN_TIME 1200
+ARRIVE_MIN 9
+ARRIVE_MAX 15
+CPU_MIN 3
+CPU_MAX 30
+QUIT_PROB 20
+DISK1_MIN 32
+DISK1_MAX 40
+DISK2_MIN 53
+DISK2_MAX 68
 ************SIMULATION START************
+1	Job 1: Arrived at CPU
+15	Job 1: Set to DISK 2 from CPU
+16	Job 2: Arrived at CPU
+23	Job 2: Set to DISK 1 from CPU
+24	Job 3: Arrived at CPU
+35	Job 3: Set to DISK 1 from CPU
+36	Job 4: Arrived at CPU
+58	Job 4: Set to DISK 2 from CPU
+59	Job 5: Arrived at CPU
+70	Job 5: Set to DISK 2 from CPU
+71	Job 6: Arrived at CPU
+92	Job 6: Set to DISK 1 from CPU
+93	Job 7: Arrived at CPU
+119	Job 7: Set to DISK 2 from CPU
+120	Job 8: Arrived at CPU
+137	Job 8: Set to DISK 1 from CPU
+138	Job 9: Arrived at CPU
+165	Job 9: Set to DISK 2 from CPU
+166	Job 10: Arrived at CPU
+200	Job 10: Set to DISK 1 from CPU
+201	Job 11: Arrived at CPU
+210	Job 11: Set to DISK 2 from CPU
+211	Job 12: Arrived at CPU
+244	Job 12: Set to DISK 1 from CPU
+245	Job 13: Arrived at CPU
+253	Job 13: Set to DISK 2 from CPU
+254	Job 14: Arrived at CPU
+269	Job 14: Set to DISK 1 from CPU
+270	Job 15: Arrived at CPU
+275	Job 15: Set to DISK 2 from CPU
+276	Job 16: Arrived at CPU
+308	Job 16: Set to DISK 1 from CPU
+309	Job 17: Arrived at CPU
+341	Job 17: Set to DISK 1 from CPU
+342	Job 18: Arrived at CPU
+348	Job 18: Set to DISK 2 from CPU
+349	Job 19: Arrived at CPU
+372	Job 19: Set to DISK 2 from CPU
+373	Job 20: Arrived at CPU
+407	Job 20: Set to DISK 1 from CPU
+408	Job 21: Arrived at CPU
+424	Job 21: Set to DISK 2 from CPU
+425	Job 22: Arrived at CPU
+434	Job 22: Set to DISK 1 from CPU
+435	Job 23: Arrived at CPU
+452	Job 23: Set to DISK 1 from CPU
+453	Job 24: Arrived at CPU
+479	Job 24: Set to DISK 2 from CPU
+480	Job 25: Arrived at CPU
+484	Job 25: Set to DISK 2 from CPU
+485	Job 26: Arrived at CPU
+490	Job 26: Set to DISK 1 from CPU
+491	Job 27: Arrived at CPU
+512	Job 27: Set to DISK 1 from CPU
+513	Job 28: Arrived at CPU
+547	Job 28: Set to DISK 2 from CPU
+548	Job 29: Arrived at CPU
+580	Job 29: Set to DISK 2 from CPU
+581	Job 30: Arrived at CPU
+588	Job 30: Set to DISK 1 from CPU
+589	Job 31: Arrived at CPU
+619	Job 31: Set to DISK 1 from CPU
+620	Job 32: Arrived at CPU
+625	Job 32: Set to DISK 2 from CPU
+626	Job 33: Arrived at CPU
+652	Job 33: Set to DISK 1 from CPU
+653	Job 34: Arrived at CPU
+664	Job 34: Set to DISK 2 from CPU
+665	Job 35: Arrived at CPU
+671	Job 35: Set to DISK 1 from CPU
+672	Job 36: Arrived at CPU
+696	Job 36: Set to DISK 2 from CPU
+697	Job 37: Arrived at CPU
+701	Job 37: Set to DISK 2 from CPU
+702	Job 38: Arrived at CPU
+726	Job 38: Set to DISK 1 from CPU
+727	Job 39: Arrived at CPU
+731	Job 39: Set to DISK 2 from CPU
+732	Job 40: Arrived at CPU
+737	Job 40: Set to DISK 1 from CPU
+738	Job 41: Arrived at CPU
+772	Job 41: Set to DISK 1 from CPU
+773	Job 42: Arrived at CPU
+801	Job 42: Set to DISK 2 from CPU
+802	Job 43: Arrived at CPU
+810	Job 43: Set to DISK 2 from CPU
+811	Job 44: Arrived at CPU
+833	Job 44: Set to DISK 1 from CPU
+834	Job 45: Arrived at CPU
+862	Job 45: Set to DISK 1 from CPU
+863	Job 46: Arrived at CPU
+887	Job 46: Set to DISK 2 from CPU
+888	Job 47: Arrived at CPU
+917	Job 47: Set to DISK 1 from CPU
+918	Job 48: Arrived at CPU
+934	Job 48: Set to DISK 2 from CPU
+935	Job 49: Arrived at CPU
+961	Job 49: Set to DISK 1 from CPU
+962	Job 50: Arrived at CPU
+994	Job 50: Set to DISK 2 from CPU
+995	Job 51: Arrived at CPU
+1025	Job 51: Set to DISK 2 from CPU
+1026	Job 52: Arrived at CPU
+1045	Job 52: Set to DISK 1 from CPU
+1046	Job 53: Arrived at CPU
+1075	Job 53: Set to DISK 1 from CPU
+1076	Job 54: Arrived at CPU
+1087	Job 54: Set to DISK 2 from CPU
+1088	Job 55: Arrived at CPU
+1122	Job 55: Set to DISK 1 from CPU
+1123	Job 56: Arrived at CPU
+1127	Job 56: Set to DISK 2 from CPU
+1128	Job 57: Arrived at CPU
+1151	Job 57: Set to DISK 1 from CPU
+1152	Job 58: Arrived at CPU
+1175	Job 58: Set to DISK 2 from CPU
+1176	Job 59: Arrived at CPU
+1189	Job 59: Set to DISK 2 from CPU
+1190	Job 60: Arrived at CPU
 ************SIMULATION END************
