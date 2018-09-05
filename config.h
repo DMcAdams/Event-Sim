@@ -16,7 +16,6 @@
 #include <string.h>
 
 #define BUFF_SIZE 1024
-
 //struct holds all of the config variables
 typedef struct config
 {

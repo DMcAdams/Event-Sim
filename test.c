@@ -80,6 +80,10 @@ int main(){
   //intentionally tying to remove a node from an empty queue
   deQueue(q);
   deQueue(q);
+  if (Empty(q))
+    puts("empty");
+  else
+    puts("not empty");
   printQueue(q);
   free(q);
 

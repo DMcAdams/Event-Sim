@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
 #include"queue.h"
 #include"config.h"
 #include"component.h"
@@ -21,6 +22,8 @@ void output_config(config *conf);
 #define BUFF_SIZE 1024
 
 int main(){
+  //for randNumber function
+  srand(time(NULL));
 
   //set up simulated components
   component *cpu = get_component();
@@ -45,7 +48,7 @@ int main(){
   while (currentTime < myConfig->FIN_TIME){
 
     //make sure that there is always an available job
-    if (job_queue->count == 0){
+    if (Empty(job_queue)){
       //increment job counter
       job_count++;
       //add new job to queue
@@ -53,25 +56,25 @@ int main(){
     }
 
     //make sure that CPU has at least 1 job in queue
-    if (cpu->QUEUE->count == 0){
+    if (Empty(cpu->QUEUE)){
       //take a job from the job_queue
       enQueue(cpu->QUEUE, deQueue(job_queue)->key);
     }
 
     //if cpu is free and has a job in queue
-    if (cpu->WAIT_TIME < currentTime && cpu->QUEUE->front != NULL) {
+    if (cpu->WAIT_TIME < currentTime && !Empty(cpu->QUEUE)) {
         //simulates the CPU, gets it's current wait time
         sim_cpu(myConfig, cpu, disk1, disk2, currentTime);
     }
 
     //if disk 1 is free and has a job in queue
-    if (disk1->WAIT_TIME < currentTime && disk1->QUEUE->front != NULL) {
+    if (disk1->WAIT_TIME < currentTime && !Empty(disk1->QUEUE)) {
         //simulates disk 1, gets it's current wait time
         sim_disk(disk1, job_queue, currentTime, myConfig->DISK1_MIN, myConfig->DISK1_MAX, 1);
     }
 
     //If disk 2 is free and has a job in queue
-    if (disk2->WAIT_TIME < currentTime && disk2->QUEUE->front != NULL) {
+    if (disk2->WAIT_TIME < currentTime && !Empty(disk2->QUEUE)) {
         //simulates disk 2, gets it's current wait time
         sim_disk(disk2, job_queue, currentTime, myConfig->DISK2_MIN, myConfig->DISK2_MAX, 2);
     }
@@ -111,6 +114,17 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
     case RUNNING:
       //remove job from CPU queue
       temp = pop(cpu);
+
+      //check if job is finished (random % chance based on QUIT_PROB)
+      if (myConfig->QUIT_PROB >= randNumber(1, 100)){
+        //log message
+        sprintf(string, "%d\tJob %d: Finished.", currentTime, temp);
+        output(string);
+        //update cpu status and finish
+        cpu->STATUS = IDLE;
+        return;
+      }
+
       //send job to DISK with least amount of jobs
       if (disk1->QUEUE->count < disk2->QUEUE->count){
         push(disk1, temp);
@@ -142,8 +156,8 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
 }
 
 //this function simulates a DISK
-void sim_disk(struct component *disk, struct queue *job_queue, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum){
-  struct node *temp;
+void sim_disk(component *disk, queue *job_queue, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum){
+  int temp;
   //for logging output
   char string[BUFF_SIZE];
 
@@ -155,8 +169,8 @@ void sim_disk(struct component *disk, struct queue *job_queue, int currentTime, 
       //get new wait time
       disk->WAIT_TIME = currentTime + randNumber(DISK_MIN, DISK_MAX);
       //output arrival message
-      sprintf(string, "%d\tJob %d: Arrived at DISK %d", currentTime, disk->QUEUE->front->key, diskNum);
-      output(string);
+      //sprintf(string, "%d\tJob %d: Arrived at DISK %d", currentTime, disk->QUEUE->front->key, diskNum);
+      //output(string);
       //set disk to RUNNING
       disk->STATUS = RUNNING;
 
@@ -165,15 +179,14 @@ void sim_disk(struct component *disk, struct queue *job_queue, int currentTime, 
     //disk is RUNNING
     case RUNNING:
       //remove job from DISK queue
-      temp = deQueue(disk->QUEUE);
+      temp = pop(disk);
       //put job back into job queue
-      enQueue(job_queue, temp->key);
+      enQueue(job_queue, temp);
       //print message
-      sprintf(string, "%d\tJob %d: I/O finished on DISK %d, sent back to job queue", currentTime, disk->QUEUE->front->key, diskNum);
+      sprintf(string, "%d\tJob %d: I/O finished on DISK %d, sent back to job queue", currentTime, temp, diskNum);
       output(string);
       //set disk status to idle
       disk->STATUS = IDLE;
-
       break;
   }
 }
