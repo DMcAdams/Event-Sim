@@ -116,7 +116,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
       temp = pop(cpu);
 
       //check if job is finished (random % chance based on QUIT_PROB)
-      if (myConfig->QUIT_PROB <= randNumber(1, 100)){
+      if (myConfig->QUIT_PROB >= randNumber(0, 100)){
         //log message
         sprintf(string, "%d\tJob %d: Finished.", currentTime, temp);
         output(string);
