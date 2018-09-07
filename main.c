@@ -22,13 +22,24 @@ void output_config(config *conf);
 #define BUFF_SIZE 1024
 
 int main(){
+  //get time
+  clock_t t = clock(); 
   //for randNumber function
   srand(time(NULL));
+
+  //used for output
+  char string[BUFF_SIZE];
+
+  //track hw utilization
+  int cpu_track = 0;
+  int disk1_track = 0;
+  int disk2_track = 0;
 
   //set up simulated components
   component *cpu = get_component();
   component *disk1 = get_component();
   component *disk2 = get_component();
+
 
   //get config info from config.txt
   config *myConfig = get_config(CONFIG_FILE);
@@ -79,9 +90,28 @@ int main(){
         sim_disk(disk2, job_queue, currentTime, myConfig->DISK2_MIN, myConfig->DISK2_MAX, 2);
     }
 
+    //track utilization
+    if (cpu->STATUS == RUNNING)
+      cpu_track++;
+    if (disk1->STATUS == RUNNING)
+      disk1_track++;
+    if (disk2->STATUS == RUNNING)
+	disk2_track++;
+
     currentTime++;
   } //while
   //sim end
+  //get time difference
+  t = clock() - t;
+  output("Stats:");
+  sprintf(string, "CPU UTILIZATION: %%%.2f", (cpu_track*100.0/currentTime));
+  output(string);
+  sprintf(string, "DISK1 UTILIZATION: %%%.2f", (disk1_track*100.0/currentTime));
+  output(string);
+  sprintf(string, "DISK2 UTILIZATION: %%%.2f", (disk2_track*100.0/currentTime));
+  output(string);
+  sprintf(string, "RUN TIME: %.2fms", (double)t*1000/CLOCKS_PER_SEC); //time in ms
+  output(string);
   output("************SIMULATION END************");
 }
 
