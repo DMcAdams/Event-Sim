@@ -17,6 +17,7 @@ typedef struct component{
   int STATUS;
   long long SIZE;
   long MOST_JOBS;
+  int PROCESSED;
   int COMPLETED;
 } component;
 
@@ -30,6 +31,7 @@ component *get_component(){
   temp->STATUS = 0;
   temp->SIZE = 0;
   temp->MOST_JOBS = 0;
+  temp->PROCESSED = 0;
   temp->COMPLETED = 0;
   //return
   return temp;
@@ -42,6 +44,12 @@ void push(component *temp, int key){
 
 //remove next element from the queue, and return it's key
 int pop(component *temp){
-  return deQueue(temp->QUEUE)->key;
+  //get node
+  node *n = deQueue(temp->QUEUE);
+  //get value of node
+  int key = n->key;
+  //free memory
+  free(n);
+  return key;
 }
 #endif

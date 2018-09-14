@@ -116,7 +116,8 @@ int main(){
 
     currentTime++;
   } //end while
-  output("***FIN***");
+  sprintf(string, "%d \t***FIN***", currentTime);
+  output(string);
 
   //get difference in real time
   real_time = clock() - real_time;
@@ -131,7 +132,7 @@ int main(){
   output(string);
   sprintf(string, "\tMOST ITEMS IN QUEUE: %lu", cpu->MOST_JOBS);
   output(string);
-  sprintf(string, "\tJOBS COMPLETED PER TIC: %.4f", (float)cpu->COMPLETED/sim_time);
+  sprintf(string, "\tJOBS PROCESSED PER TIC: %.4f", (float)cpu->PROCESSED/sim_time);
   output(string);
   output("DISK 1:");
   sprintf(string, "\tUTILIZATION: %%%.2f", (disk1_track*100.0/currentTime));
@@ -140,7 +141,7 @@ int main(){
   output(string);
   sprintf(string, "\tMOST ITEMS IN QUEUE: %lu", disk1->MOST_JOBS);
   output(string);
-  sprintf(string, "\tJOBS COMPLETED PER TIC: %.4f", (float)disk1->COMPLETED/sim_time);
+  sprintf(string, "\tJOBS PROCESSED PER TIC: %.4f", (float)disk1->PROCESSED/sim_time);
   output(string);
   output("DISK 2:");
   sprintf(string, "\tUTILIZATION: %%%.2f", (disk2_track*100.0/currentTime));
@@ -149,12 +150,16 @@ int main(){
   output(string);
   sprintf(string, "\tMOST ITEMS IN QUEUE: %lu", disk2->MOST_JOBS);
   output(string);
-  sprintf(string, "\tJOBS COMPLETED PER TIC: %.4f", (float)disk2->COMPLETED/sim_time);
+  sprintf(string, "\tJOBS PROCESSED PER TIC: %.4f", (float)disk2->PROCESSED/sim_time);
   output(string);
   output("SYSTEM:");
   sprintf(string, "\tSIM TIME: %d ticks", sim_time);
   output(string);
   sprintf(string, "\tRUN TIME: %.2fms", (double)real_time*1000/CLOCKS_PER_SEC);
+  output(string);
+  sprintf(string, "\tJOBS CREATED: %d", job_count);
+  output(string);
+  sprintf(string, "\tJOBS COMPLETED: %d", cpu->COMPLETED);
   output(string);
   output("************SIMULATION END************");
 }
@@ -194,6 +199,9 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
         //log message
         sprintf(string, "%d\tJob %d: Finished.", currentTime, temp);
         output(string);
+        //add to PROCESSED and COMPLETED counters
+        cpu->COMPLETED ++;
+        cpu->PROCESSED ++;
         //update cpu status and finish
         cpu->STATUS = IDLE;
         return;
@@ -211,7 +219,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
       //if same amount of jobs, pick one at random
       else{
         int num = randNumber(0,100);
-        if (num>50){
+        if (num>=50){
           push(disk1, temp);
           diskNum = 1;
         }
@@ -225,7 +233,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
       output(string);
       //add to completed Counter
       //set CPU to IDLE
-      cpu->COMPLETED ++;
+      cpu->PROCESSED ++;
       cpu->STATUS = IDLE;
       break;
   }
@@ -262,7 +270,7 @@ void sim_disk(component *disk, queue *job_queue, int currentTime, int DISK_MIN, 
       sprintf(string, "%d\tJob %d: I/O finished on DISK %d, sent back to job queue", currentTime, temp, diskNum);
       output(string);
       //add one to completion counter
-      disk->COMPLETED++;
+      disk->PROCESSED++;
       //set disk status to idle
       disk->STATUS = IDLE;
       break;
