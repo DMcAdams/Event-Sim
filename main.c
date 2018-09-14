@@ -23,7 +23,7 @@ void output_config(config *conf);
 
 int main(){
   //get time
-  clock_t t = clock(); 
+  clock_t real_time = clock();
   //for randNumber function
   srand(time(NULL));
 
@@ -96,21 +96,65 @@ int main(){
     if (disk1->STATUS == RUNNING)
       disk1_track++;
     if (disk2->STATUS == RUNNING)
-	disk2_track++;
+	    disk2_track++;
+
+    //track queue size
+    cpu->SIZE += cpu->QUEUE->count;
+    disk1->SIZE += disk1->QUEUE->count;
+    disk2->SIZE += disk2->QUEUE->count;
+
+    //track max jobs at one time
+    if (cpu->QUEUE->count > cpu->MOST_JOBS)
+      cpu->MOST_JOBS = cpu->QUEUE->count;
+
+    if (disk1->QUEUE->count > disk1->MOST_JOBS)
+      disk1->MOST_JOBS = disk1->QUEUE->count;
+
+    if (disk2->QUEUE->count > disk2->MOST_JOBS)
+      disk2->MOST_JOBS = disk2->QUEUE->count;
+
 
     currentTime++;
-  } //while
-  //sim end
-  //get time difference
-  t = clock() - t;
-  output("Stats:");
-  sprintf(string, "CPU UTILIZATION: %%%.2f", (cpu_track*100.0/currentTime));
+  } //end while
+  output("***FIN***");
+
+  //get difference in real time
+  real_time = clock() - real_time;
+  //get total simulation time
+  int sim_time = myConfig->FIN_TIME - myConfig->INIT_TIME;
+  //outputing stats from simulation
+  output("***Stats***");
+  output("CPU:");
+  sprintf(string, "\tUTILIZATION: %%%.2f", (cpu_track*100.0 / currentTime));
   output(string);
-  sprintf(string, "DISK1 UTILIZATION: %%%.2f", (disk1_track*100.0/currentTime));
+  sprintf(string, "\tAVERAGE SIZE OF QUEUE: %.2f", (double)cpu->SIZE / sim_time);
   output(string);
-  sprintf(string, "DISK2 UTILIZATION: %%%.2f", (disk2_track*100.0/currentTime));
+  sprintf(string, "\tMOST ITEMS IN QUEUE: %lu", cpu->MOST_JOBS);
   output(string);
-  sprintf(string, "RUN TIME: %.2fms", (double)t*1000/CLOCKS_PER_SEC); //time in ms
+  sprintf(string, "\tJOBS COMPLETED PER TIC: %.4f", (float)cpu->COMPLETED/sim_time);
+  output(string);
+  output("DISK 1:");
+  sprintf(string, "\tUTILIZATION: %%%.2f", (disk1_track*100.0/currentTime));
+  output(string);
+  sprintf(string, "\tAVERAGE SIZE OF QUEUE: %.2f", (double)disk1->SIZE / sim_time);
+  output(string);
+  sprintf(string, "\tMOST ITEMS IN QUEUE: %lu", disk1->MOST_JOBS);
+  output(string);
+  sprintf(string, "\tJOBS COMPLETED PER TIC: %.4f", (float)disk1->COMPLETED/sim_time);
+  output(string);
+  output("DISK 2:");
+  sprintf(string, "\tUTILIZATION: %%%.2f", (disk2_track*100.0/currentTime));
+  output(string);
+  sprintf(string, "\tAVERAGE SIZE OF QUEUE: %.2f", (double)disk2->SIZE / sim_time);
+  output(string);
+  sprintf(string, "\tMOST ITEMS IN QUEUE: %lu", disk2->MOST_JOBS);
+  output(string);
+  sprintf(string, "\tJOBS COMPLETED PER TIC: %.4f", (float)disk2->COMPLETED/sim_time);
+  output(string);
+  output("SYSTEM:");
+  sprintf(string, "\tSIM TIME: %d ticks", sim_time);
+  output(string);
+  sprintf(string, "\tRUN TIME: %.2fms", (double)real_time*1000/CLOCKS_PER_SEC);
   output(string);
   output("************SIMULATION END************");
 }
@@ -179,7 +223,9 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
       //print message
       sprintf(string,"%d\tJob %d: Sent to DISK %d from CPU", currentTime, temp, diskNum);
       output(string);
+      //add to completed Counter
       //set CPU to IDLE
+      cpu->COMPLETED ++;
       cpu->STATUS = IDLE;
       break;
   }
@@ -215,6 +261,8 @@ void sim_disk(component *disk, queue *job_queue, int currentTime, int DISK_MIN, 
       //print message
       sprintf(string, "%d\tJob %d: I/O finished on DISK %d, sent back to job queue", currentTime, temp, diskNum);
       output(string);
+      //add one to completion counter
+      disk->COMPLETED++;
       //set disk status to idle
       disk->STATUS = IDLE;
       break;
@@ -225,6 +273,7 @@ void sim_disk(component *disk, queue *job_queue, int currentTime, int DISK_MIN, 
 int randNumber(int min, int max){
   return min+(rand() % (max+1));
 }
+
 //outputs text to the console and to a log file
 void output(char *s){
 

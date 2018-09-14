@@ -15,6 +15,9 @@ typedef struct component{
   struct queue *QUEUE;
   int WAIT_TIME;
   int STATUS;
+  long long SIZE;
+  long MOST_JOBS;
+  int COMPLETED;
 } component;
 
 //function to initialize component struct
@@ -25,7 +28,9 @@ component *get_component(){
   temp->QUEUE = createQueue();
   temp->WAIT_TIME = 0;
   temp->STATUS = 0;
-
+  temp->SIZE = 0;
+  temp->MOST_JOBS = 0;
+  temp->COMPLETED = 0;
   //return
   return temp;
 }
