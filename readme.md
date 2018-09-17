@@ -24,14 +24,48 @@ FUNCTIONS:
     component *disk2 - holds date for simulated disk
     config *myConfig - holds information found in config.txt
 
-    Process:
-    1.) Initialize all of the variables
-    2.) Output the contents of the config file
-    3.) Output simulation start message
+    Description:
+      This function is where most of the core variables are initialized. Once the
+        intital setup is done, a while loop runs with a counter that goes from
+        INIT_TIME to FIN_TIME. Each loop represents a single unit of time. During
+        each loop sim_cpu and sim_disk are called to simulate their respective
+        components. The output is recorded in the console and in a text file.ARRIVE_MIN
+        and ARRIVE_MAX are used to determine when a new job is created.
+        Counters record when the components are running to track utilization.
+        At the end of the simulation all of the recorded statistics are also
+        calculated and displayed.
 
     sim_cpu()
-    sim_disk()
 
+      Input:
+        config *myConfig
+        component *cpu
+        component *disk1
+        component *disk2
+        int currentTime
+
+      Description:
+      This function simulates the CPU. When the cpu recieves a job a random wait time
+        between CPU_MIN and CPU_MAX is calculated by randNumber(), the CPU's
+        status is set to RUNNING, and a job started message is sent to output().
+        Until the wait time is reached, the function will do nothing.
+        Once reached, QUIT_PROB will determine whether the job is finished, or if
+        disk I/O is needed. If finished, a message is displayed and the job is removed
+        from the queue. If the job needs I/O, the job is moved to the least used disk
+        queue, or is randomly selected if they are even. The CPU is then set to IDLE
+        while it waits for it's next job.
+
+    sim_disk()
+      Input:
+        component *disk
+        component *cpu
+        int currentTime
+        int DISK_MIN
+        int DISK_MAX
+        int diskNum
+
+      Description:
+      
   randNumber(min, max):
     Input:
     int min
@@ -105,3 +139,117 @@ Functions:
 
     Description: Removes the next node in a component's queue and returns it's
       value. The node's memory is also freed.
+
+FILE: ./headers/queue.h
+
+DESCRIPTION: An implementation of a linked-list queue
+
+FUNCTIONS:
+  typedef struct node{}
+
+    Description:
+    Defines a struct with the following variables:
+      int key - the value being stored (job number in this program)
+      node *next - points to the next node in the queue
+  typedef struct queue{}
+
+    Decription:
+    Defines a struct with the following variables:
+        node *front - the node at the front of the queue
+        node *back - the last node in the queue
+        int count - holds the size of the queue
+
+    createQueue()
+      Output:
+        queue *temp
+
+      Description:
+        Allocates memory for a queue struct and sets front and back to NULL, and
+          count to 0, before returning the empty queue.
+
+
+    newnode()
+      Input:
+        int key - value being stored in the node
+      Output:
+        node *temp
+
+      Description:
+        Allocates memory for the node, and sets it's key to the one in the input
+          before returning it
+
+    enQueue()
+      Input:
+        queue *q - the queue to add a new node too
+        int key - the value for the new node
+
+      Description:
+        Sends the key to newnode to create a node struct. The node is added to the
+          back of the queue, or is set to both the front and back if the queue is
+          empty. It then adds 1 to the queue's count.
+
+    deQueue()
+      Input:
+        queue *q
+      Output:
+        node *temp
+
+      Description:
+        Removes the node at the front of the queue, and sets the front to the next
+          node in the queue and subtracts one from the count. If there is no other node, set both the front and back to NULL. Returns NULL if queue is empty.
+
+    printQueue()
+
+      Description: Prints out the contents of the queue to the console. Mostly
+        used for testing.
+
+    Empty()
+      Output:
+        int num
+
+      Description:
+        If the queue is empty, this returns 1 (TRUE). Otherwise, it returns 0 (FALSE).
+
+FILE: ./headers/config.h
+
+DESCRIPTION: A header file that handles the config struct.
+
+FUNCTIONS:
+  typedef struct config{}
+    Input:
+      N/A
+
+    Description:
+    Defines a struct that holds the following variables:
+      int INIT_TIME - start time for simulation
+      int FIN_TIME - end time for simulation
+      int ARRIVE_MIN - minimum wait time for a new job
+      int ARRIVE_MAX - maximum wait time for a new job
+      int QUIT_PROB - the chance of a job being finished after exiting the CPU
+      int CPU_MIN - minimum wait time for a job to finish at the CPU
+      int CPU_MAX - maximum wait time for a job to finish at the CPU
+      int DISK1_MIN - minimum wait time for a job to finish at DISK 1
+      int DISK1_MAX - maximum wait time for a job to finish at DISK 1
+      int DISK2_MIN - minimum wait time for a job to finish at DISK 2
+      int DISK2_MAX - maximum wait time for a job to finish at DISK 2
+      int SEED - used to input a custom seed into srand
+
+  create_config()
+    Input: N/A
+
+    Output:
+    config *myConfig
+
+    Description: Allocates memory for myConfig, initializes all variables to 0,
+      and returns it.
+
+  get_config()
+      Input:
+        config.txt
+
+      Output:
+        config myConfig
+
+      Description:
+        Gets myConfig from my create_config(), then sets it's variables equal to
+          the ones found in config.txt before returning it.
