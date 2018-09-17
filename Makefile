@@ -1,4 +1,4 @@
-# build an executable named myprog from myprog.c
+# build an executable named main
 all: main.c
 	gcc -o main main.c
 
