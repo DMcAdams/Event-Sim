@@ -30,6 +30,7 @@ typedef struct config
     int DISK1_MAX;
     int DISK2_MIN;
     int DISK2_MAX;
+    int SEED;
 } config;
 
 //initialize the config struct
@@ -48,6 +49,7 @@ config *create_config(){
     temp->DISK1_MAX = 0;
     temp->DISK2_MIN = 0;
     temp->DISK2_MAX = 0;
+    temp->SEED = 0;
     return temp;
 }
 
@@ -110,6 +112,8 @@ config *get_config(const char *filename) {
                 case 10:
                     CONFIG_INFO->DISK2_MAX = atoi(line2);
                     break;
+                case 11: CONFIG_INFO->SEED = atoi(line2);
+                  break;
                 default:
                     puts("ERROR: Config.txt file couldn't be read");
             }

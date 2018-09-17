@@ -7,7 +7,7 @@
 
 //function prototypes
 void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk2, int currentTime);
-void sim_disk(struct component *disk, struct queue *job_queue, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum);
+void sim_disk(struct component *disk, component *cpu, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum);
 int randNumber(int min, int max);
 void output(char *s);
 void output_config(config *conf);
@@ -24,8 +24,20 @@ void output_config(config *conf);
 int main(){
   //get time
   clock_t real_time = clock();
+
+  //get config info from config.txt
+  config *myConfig = get_config(CONFIG_FILE);
+  //set current time to starting time specified in config
+  int currentTime = myConfig->INIT_TIME;
+
   //for randNumber function
-  srand(time(NULL));
+  //if seed not specified
+  if (myConfig->SEED == 0){
+    //use time
+    myConfig->SEED = time(NULL);
+  }
+  //seed the random number
+  srand(myConfig->SEED);
 
   //used for output
   char string[BUFF_SIZE];
@@ -40,14 +52,8 @@ int main(){
   component *disk1 = get_component();
   component *disk2 = get_component();
 
-
-  //get config info from config.txt
-  config *myConfig = get_config(CONFIG_FILE);
-  //set current time to starting time specified in config
-  int currentTime = myConfig->INIT_TIME;
-
   //create job queue
-  queue *job_queue = createQueue();
+  int job_wait_time = 0;
   //tracks number of jobs
   int job_count = 0;
 
@@ -58,18 +64,14 @@ int main(){
   //main loop, each tick on the simulated clock checks the CPU and both disks.
   while (currentTime < myConfig->FIN_TIME){
 
-    //make sure that there is always an available job
-    if (Empty(job_queue)){
-      //increment job counter
+    //if time for new job
+    if (job_wait_time <= currentTime){
+      //add one to job counter
       job_count++;
-      //add new job to queue
-      enQueue(job_queue, job_count);
-    }
-
-    //make sure that CPU has at least 1 job in queue
-    if (Empty(cpu->QUEUE)){
-      //take a job from the job_queue
-      enQueue(cpu->QUEUE, deQueue(job_queue)->key);
+      //add job to cpu queue
+      push(cpu, job_count);
+      //get wait time for next job
+      job_wait_time = currentTime + randNumber(myConfig->ARRIVE_MIN, myConfig->ARRIVE_MAX);
     }
 
     //if cpu is free and has a job in queue
@@ -81,13 +83,13 @@ int main(){
     //if disk 1 is free and has a job in queue
     if (disk1->WAIT_TIME < currentTime && !Empty(disk1->QUEUE)) {
         //simulates disk 1, gets it's current wait time
-        sim_disk(disk1, job_queue, currentTime, myConfig->DISK1_MIN, myConfig->DISK1_MAX, 1);
+        sim_disk(disk1, cpu, currentTime, myConfig->DISK1_MIN, myConfig->DISK1_MAX, 1);
     }
 
     //If disk 2 is free and has a job in queue
     if (disk2->WAIT_TIME < currentTime && !Empty(disk2->QUEUE)) {
         //simulates disk 2, gets it's current wait time
-        sim_disk(disk2, job_queue, currentTime, myConfig->DISK2_MIN, myConfig->DISK2_MAX, 2);
+        sim_disk(disk2, cpu, currentTime, myConfig->DISK2_MIN, myConfig->DISK2_MAX, 2);
     }
 
     //track utilization
@@ -240,7 +242,7 @@ void sim_cpu(config *myConfig, component *cpu, component *disk1, component *disk
 }
 
 //this function simulates a DISK
-void sim_disk(component *disk, queue *job_queue, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum){
+void sim_disk(component *disk, component *cpu, int currentTime, int DISK_MIN, int DISK_MAX, int diskNum){
   int temp;
   //for logging output
   char string[BUFF_SIZE];
@@ -265,7 +267,7 @@ void sim_disk(component *disk, queue *job_queue, int currentTime, int DISK_MIN, 
       //remove job from DISK queue
       temp = pop(disk);
       //put job back into job queue
-      enQueue(job_queue, temp);
+      push(cpu, temp);
       //print message
       sprintf(string, "%d\tJob %d: I/O finished on DISK %d, sent back to job queue", currentTime, temp, diskNum);
       output(string);
@@ -319,16 +321,17 @@ void output_config(config *conf){
   //print config to console
   printf("INIT_TIME %d\nFIN_TIME %d\n", conf->INIT_TIME, conf-> FIN_TIME);
   printf("ARRIVE_MIN %d\nARRIVE_MAX %d\n", conf->ARRIVE_MIN, conf-> ARRIVE_MAX);
-  printf("CPU_MIN %d\nCPU_MAX %d\nQUIT_PROB %d\n", conf->CPU_MIN, conf-> CPU_MAX, conf->QUIT_PROB);
+  printf("CPU_MIN %d\nCPU_MAX %d\n", conf->CPU_MIN, conf-> CPU_MAX);
   printf("DISK1_MIN %d\nDISK1_MAX %d\n", conf->DISK1_MIN, conf-> DISK1_MAX);
   printf("DISK2_MIN %d\nDISK2_MAX %d\n", conf->DISK2_MIN, conf-> DISK2_MAX);
-
+  printf("QUIT_PROB %d\nSEED %d\n", conf->QUIT_PROB, conf->SEED);
   //print config to log
   fprintf(file, "INIT_TIME %d\nFIN_TIME %d\n", conf->INIT_TIME, conf-> FIN_TIME);
   fprintf(file, "ARRIVE_MIN %d\nARRIVE_MAX %d\n", conf->ARRIVE_MIN, conf-> ARRIVE_MAX);
-  fprintf(file, "CPU_MIN %d\nCPU_MAX %d\nQUIT_PROB %d\n", conf->CPU_MIN, conf-> CPU_MAX, conf->QUIT_PROB);
+  fprintf(file, "CPU_MIN %d\nCPU_MAX %d\n", conf->CPU_MIN, conf-> CPU_MAX);
   fprintf(file, "DISK1_MIN %d\nDISK1_MAX %d\n", conf->DISK1_MIN, conf-> DISK1_MAX);
   fprintf(file, "DISK2_MIN %d\nDISK2_MAX %d\n", conf->DISK2_MIN, conf-> DISK2_MAX);
+  fprintf(file, "QUIT_PROB %d\nSEED %d\n", conf->QUIT_PROB, conf->SEED);
 
   //close file
   fclose(file);
