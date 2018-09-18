@@ -45,7 +45,7 @@ FUNCTIONS:
         int currentTime
 
       Description:
-      This function simulates the CPU. When the cpu recieves a job a random wait time
+      This function simulates the CPU. When the cpu receives a job a random wait time
         between CPU_MIN and CPU_MAX is calculated by randNumber(), the CPU's
         status is set to RUNNING, and a job started message is sent to output().
         Until the wait time is reached, the function will do nothing.
@@ -65,8 +65,16 @@ FUNCTIONS:
         int diskNum
 
       Description:
-      
-  randNumber(min, max):
+      This function simulates a disk. When the disk receives a job a random wait time
+        between DISK_MIN and DISK_MAX is calculated by randNumber(), the DISK's
+        status is set to RUNNING, and a job recieved message is sent to output().
+        Until the wait time is reached, the function will do nothing.
+        Once reached, the job will be sent back into the job queue and the DISK is then
+        set to IDLE while it waits for it's next job.
+
+
+  randNumber(min, max)
+
     Input:
     int min
     int max
@@ -101,8 +109,6 @@ Functions:
 
   typedef struct component{}
 
-    Input: N/A
-
     Description:
     Defines a struct that holds the following data:
       struct queue *QUEUE; - holds incoming jobs
@@ -114,7 +120,6 @@ Functions:
       int COMPLETED; - how many jobs have been finished after processing
 
   get_component()
-    Input: N/A
 
     Output: component *temp
 
@@ -124,6 +129,7 @@ Functions:
         returns the struct.
 
   push()
+
     Input:
       component *temp
       int key
@@ -131,6 +137,7 @@ Functions:
     Description: Adds a value to a component's queue using queue.h functions.  
 
   pop()
+
     Input:
       component *temp
 
@@ -145,12 +152,14 @@ FILE: ./headers/queue.h
 DESCRIPTION: An implementation of a linked-list queue
 
 FUNCTIONS:
+
   typedef struct node{}
 
     Description:
     Defines a struct with the following variables:
       int key - the value being stored (job number in this program)
       node *next - points to the next node in the queue
+
   typedef struct queue{}
 
     Decription:
@@ -160,6 +169,7 @@ FUNCTIONS:
         int count - holds the size of the queue
 
     createQueue()
+
       Output:
         queue *temp
 
@@ -169,8 +179,10 @@ FUNCTIONS:
 
 
     newnode()
+
       Input:
         int key - value being stored in the node
+
       Output:
         node *temp
 
@@ -179,6 +191,7 @@ FUNCTIONS:
           before returning it
 
     enQueue()
+
       Input:
         queue *q - the queue to add a new node too
         int key - the value for the new node
@@ -189,8 +202,10 @@ FUNCTIONS:
           empty. It then adds 1 to the queue's count.
 
     deQueue()
+
       Input:
         queue *q
+
       Output:
         node *temp
 
@@ -204,6 +219,7 @@ FUNCTIONS:
         used for testing.
 
     Empty()
+
       Output:
         int num
 
@@ -215,9 +231,8 @@ FILE: ./headers/config.h
 DESCRIPTION: A header file that handles the config struct.
 
 FUNCTIONS:
+
   typedef struct config{}
-    Input:
-      N/A
 
     Description:
     Defines a struct that holds the following variables:
@@ -235,7 +250,6 @@ FUNCTIONS:
       int SEED - used to input a custom seed into srand
 
   create_config()
-    Input: N/A
 
     Output:
     config *myConfig
@@ -244,6 +258,7 @@ FUNCTIONS:
       and returns it.
 
   get_config()
+
       Input:
         config.txt
 
