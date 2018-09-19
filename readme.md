@@ -90,7 +90,7 @@ FUNCTIONS:
     char *string
 
     Description: Takes a string and outputs it to the console and
-      writes it to a log text file.
+      appends it to a log text file.
 
   output_config()
 
@@ -98,7 +98,7 @@ FUNCTIONS:
       config *myConfig
 
     Description: Takes myConfig and outputs the values it holds to the console
-      and writes it to a log text file.
+      and appends it to a log text file.
 
 
 FILE: ./headers/component.h
@@ -268,3 +268,17 @@ FUNCTIONS:
       Description:
         Gets myConfig from my create_config(), then sets it's variables equal to
           the ones found in config.txt before returning it.
+
+
+FILE: config.txt
+
+DESCRIPTION:
+  This text file holds the data for variables used by config.h. Changing these
+    will alter how each component in the event sim runs.
+
+FILE: log.txt
+
+DESCRIPTION: This text file holds all of the output produced by the event sim. It
+  includes all of the data in config.txt, the events that occur in the event simulator,
+  and all of the statistics gathered each time it is run. If log.txt is not present when the
+  program is run a new one will be created.

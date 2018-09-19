@@ -7,14 +7,18 @@
 
 #ifndef QUEUE_H
 #define QUEUE_H
+
 #include<stdlib.h>
 #include<stdio.h>
+
 #define TRUE 1
 #define FALSE 0
 //each node in the queue has a key and a pointer to the next node in the queue
 typedef struct node{
     //holds a data value
     int key;
+    //holds time spent on processing
+    int time;
     //next node in queue
     struct node *next;
 
@@ -35,6 +39,7 @@ queue* createQueue() {
 node* newnode(int key){
     node *temp = (node*)malloc(sizeof(node));
     temp->key = key;
+    temp->time = 0;
     temp->next = NULL;
     return temp;
 }
